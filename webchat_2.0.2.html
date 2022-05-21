@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI-EN Keyboard Interface</title>
+    <link href="static/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="static/bootstrap/kbi.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+    <!-- favicon -->
+    <link rel="icon" href="media/lang.png" sizes="32x32" type="image/png">
+</head>
+
+<body class="container bg-dark">
+    <form class="form bg-dark text-white my-auto mt-5">
+        <div class="p-5">
+            <h2 class="mb-4">Sinhala-English Code-switchable Keyboard Interface Demo ⌨️</h2>
+
+<!--            <div class="form-floating text-dark mb-3">-->
+<!--                <textarea class="form-control text-dark ta1" placeholder="Type your message here" id="tb1"-->
+<!--                    style="height: 100px"></textarea>-->
+<!--                <label for="tb1">Message</label>-->
+<!--                <div id="messageHelp" class="form-text">Type your message here. 🤖</div>-->
+<!--            </div>-->
+            <p>The first ever portable Sinhala-English code-switching keyboard interface.</p>
+                <ul class="mb-5">
+                    <li>Can be attached to any website.</li>
+                    <li>Fully written in Vanilla JavaScript.</li>
+                    <li>Seamlessly integratable with rasa web-chat.</li>
+                    <li>Highly customizable.</li>
+                </ul>
+            <div class="text-start w-50 mb-4 p-3 rounded" style="background-color: #A6A6A6 ">
+                <h4 class="text-dark">Instructions:</h4>
+                 <ol class="mt-3 mb-3 text-dark">
+                     <li>Click Chat-Bot icon in Right-Bottom corner.</li>
+                     <li>Then, Chat-Bot Coversation UI will open.</li>
+                     <li>Type anything you want to know from the Chat-Bot.</li>
+                     <li>Press enter. Then Chat-Bot will respond with the related subject.</li>
+                </ol>
+                <p class="text-dark"><b>Note:</b> By Default the keyboard is allowed only Sinhala typing. You can use CTRL+Q to switch into English.</p>
+            </div>
+            <button id="btnsend" type="submit" class="btn btn-danger">Get Started</button>
+        </div>
+    </form>
+
+    <script>!(function () {
+            let e = document.createElement("script"),
+                t = document.head || document.getElementsByTagName("head")[0];
+            (e.src = "static/rasa_webchat.js"),
+                // Replace 1.x.x with the version that you want
+                //https://cdn.jsdelivr.net/npm/rasa-webchat@1.x.x/lib/index.js
+                (e.async = !0),
+                (e.onload = () => {
+                    window.WebChat.default(
+                        {
+                            customData: {
+                                language: "en"
+                            },
+                            socketUrl: "http://localhost:5005",
+                            initPayload: "/intro",
+                            socketPath: "/socket.io/",
+                            onSocketEvent: {
+                                'bot_uttered': () => console.log('the bot said something'),
+                                'user_uttered': () => console.log('user said something'),
+                                'connect': () => console.log('connection established'),
+                                'disconnect': () => console.log('connection terminated'),
+                            },
+                            // add other props here
+                            title: "Sally, the SLIIT Bot",
+                            subtitle: "", //"Always happy to help you out. 👋",
+                            showFullScreenButton: false,
+                            displayUnreadCount: true,
+                            showMessageDate: false,
+                            profileAvatar: "./media/bot-w1.png",
+                            openLauncherImage: "./media/cb1.png",
+                            closeImage: "",
+                            inputTextFieldHint: "", //"Message Here...",
+                            params: {
+                                storage: "local", //"session"
+                            }
+                        },
+                        null
+                    );
+                }),
+                t.insertBefore(e, t.firstChild);
+        })();
+    </script>
+
+    <script>!(function () {
+            let e = document.createElement("script"),
+                t = document.head || document.getElementsByTagName("head")[0];
+            (e.src = "static/kbi-2.0.2.js"),
+                (e.async = !0),
+                (e.onload = () => {
+                    KeyboardInterfaceInit(
+                        {
+                            defaultLanguage: "SI", //EN/SI
+                            textMessageElement: ".rw-new-message", //"#tb1", //
+                            // sendMessageElement: "", //OPTIONAL
+                            switchColor: "#29B6F6",
+                            switchBarColor: "#566573",
+                            switchTextColor: "#e68d29",
+                            switchBarPosition: {
+                                hpos: "bottom",
+                                hval: "18px",
+                                vpos: "right",
+                                vval: "90px",
+                                zindex: "10000",
+                            },
+                            disableSwitchAnimation: false,
+                            disableSwitch: false,
+                            // webchat widget styles
+                            widgetStyles: {
+                                disableRasaWebchatStyles: false,
+                                widgetHeaderColor: "#424242",
+                                widgetLauncherColor: "#29B6F6",
+                                widgetContainerColor: "#2E4053",
+                                widgetMessageAreaColor: "#EEEEEE",
+                                widgetUserUtteredColor: "#039BE5",
+                                widgetUserUtteredTextColor: "#ffffff",
+                                widgetBotUtteredColor: "#616161",
+                                widgetBotUtteredTextColor: "#ffffff",
+                                widgetReplyButtonColor: "#B0BEC5",
+                                widgetSendMessageImage: "./media/send_dark1.png",
+                                widgetSendMessageImageSize: {
+                                    width: "25px",
+                                    height: "25px",
+                                },
+                                widgetMainAvatarImage: "./media/animated_avt.gif",
+                            },
+                        },
+                    );
+                }),
+                t.insertBefore(e, t.firstChild);
+        })();
+    </script>
+
+    <script>!(function () {
+            let e = document.createElement("script"),
+                t = document.head || document.getElementsByTagName("head")[0];
+            (e.src = "static/toast-builder-1.0.0.js"),
+                (e.async = !0),
+                (e.onload = () => {
+                    ToastBuilderInit(
+                        {
+                            disableToasts: false,
+                            defaultToastBg: "bg-light",
+                            defaultTextColor: "text-dark",
+                            defaultCloseBtnColor: "btn-close-dark",
+                            defaultToastIcon: "media/lang_dark.png",
+                            defaultToastHeading: "Toast Heading",
+                            defaultToastBody: "Hello World! I am a Toast :)",
+                            defaultPosition: {
+                                hpos: "bottom-0",
+                                vpos: "start-0",
+                                zindex: "10001",
+                            }, //top bottom | start end
+                        },
+                    );
+                }),
+                t.insertBefore(e, t.firstChild);
+        })();
+    </script>
+
+
+    <script type="text/javascript" src="static/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="static/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>

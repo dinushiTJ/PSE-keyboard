@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="static/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="static/bootstrap/kbi.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+</head>
+
+<body class="container bg-dark">
+    <form class="form bg-dark text-white my-auto mt-5">
+        <div class="p-5">
+            <h2 class="mb-5">Sinhala-English Code-switchable Keyboard Interface ⌨️</h2>
+            <!-- <div class="form-floating text-dark mb-3">
+                <textarea class="form-control text-dark ta1" placeholder="Type your message here" id="tb1"
+                    style="height: 100px"></textarea>
+                <label for="tb1">Message</label>
+                <div id="messageHelp" class="form-text">Type your message here. 🤖</div>
+            </div>
+            <button id="btnsend" type="submit" class="btn btn-danger">Send 📨</button> -->
+        </div>
+    </form>
+
+    <script>!(function () {
+            let e = document.createElement("script"),
+                t = document.head || document.getElementsByTagName("head")[0];
+            (e.src = "static/rasa_webchat.js"),
+                // Replace 1.x.x with the version that you want
+                //https://cdn.jsdelivr.net/npm/rasa-webchat@1.x.x/lib/index.js
+                (e.async = !0),
+                (e.onload = () => {
+                    window.WebChat.default(
+                        {
+                            customData: { language: "en" },
+                            socketUrl: "http://localhost:5081",
+                            initPayload: "/greet",
+                            socketPath: "/socket.io/",
+                            onSocketEvent: {
+                                'bot_uttered': () => console.log('the bot said something'),
+                                'user_uttered': () => console.log('user said something'),
+                                'connect': () => console.log('connection established'),
+                                'disconnect': () => console.log('connection terminated'),
+                            },
+                            // add other props here
+                            title: "Sally, the SLIIT Bot",
+                            subtitle: "Always happy to help you out. 👋",
+                            showFullScreenButton: false,
+                            displayUnreadCount: true,
+                            showMessageDate: false,
+                            profileAvatar: "./media/bot-w1.png",
+                            openLauncherImage: "./media/cb1.png",
+                            closeImage: "",
+                            inputTextFieldHint: "", //"Message Here...",
+                        },
+                        null
+                    );
+                }),
+                t.insertBefore(e, t.firstChild);
+        })();
+    </script>
+
+    <script>!(function () {
+            let e = document.createElement("script"),
+                t = document.head || document.getElementsByTagName("head")[0];
+            (e.src = "static/kbi-2.0.1.js"),
+                (e.async = !0),
+                (e.onload = () => {
+                    KeyboardInterfaceInit(
+                        {
+                            defaultLanguage: "SI", //EN/SI
+                            textMessageElement: ".rw-new-message",
+                            // sendMessageElement: "", //OPTIONAL
+                            switchColor: "#85929E",
+                            switchBarColor: "#566573",
+                            switchTextColor: "#e68d29",
+                            switchBarPosition: {
+                                hpos: "bottom", 
+                                hval: "18px",
+                                vpos: "right",
+                                vval: "90px",
+                                zindex: "10000",
+                            },
+                            disableSwitchAnimation: false,
+                            disableSwitch: false,
+                            // webchat widget styles
+                            disableRasaWebchatStyles: false,
+                            widgetHeaderColor: "#424242",
+                            widgetLauncherColor: "#4CAF50",
+                            widgetContainerColor: "#000000",
+                            widgetMessageAreaColor: "#EEEEEE",
+                            widgetUserUtteredColor: "#4CAF50",
+                            widgetBotUtteredColor: "#DCEDC8",
+                            widgetButtonColor: "#039BE5",
+                            widgetSendMessageImage: "./media/send_dark1.png",
+                            widgetSendMessageImageSize: {
+                                width: "25px",
+                                height: "25px",
+                            },
+                        },
+                    );
+                }),
+                t.insertBefore(e, t.firstChild);
+        })();
+    </script>
+
+    <script>!(function () {
+            let e = document.createElement("script"),
+                t = document.head || document.getElementsByTagName("head")[0];
+            (e.src = "static/toast-builder-1.0.0.js"),
+                (e.async = !0),
+                (e.onload = () => {
+                    ToastBuilderInit(
+                        {
+                            disableToasts: false,
+                            defaultToastBg: "bg-light",
+                            defaultTextColor: "text-dark",
+                            defaultCloseBtnColor: "btn-close-dark",
+                            defaultToastIcon: "media/lang_dark.png",
+                            defaultToastHeading: "Toast Heading",
+                            defaultToastBody: "Hello World! I am a Toast :)",
+                            defaultPosition: {
+                                hpos: "bottom-0", 
+                                vpos: "start-0",
+                                zindex: "10001",
+                            }, //top bottom | start end
+                        },
+                    );
+                }),
+                t.insertBefore(e, t.firstChild);
+        })();
+    </script>
+
+
+    <script type="text/javascript" src="static/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="static/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>
